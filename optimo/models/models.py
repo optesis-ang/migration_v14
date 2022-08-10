@@ -1,13 +1,16 @@
-# -*- coding:utf-8 -*-
-from odoo import models, fields, api, _
+#-*- coding:utf-8 -*-
+from odoo import models, fields, api, osv, _
 from odoo.exceptions import ValidationError, UserError
 import datetime
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class Direction(models.Model):
     _name = "optesis.direction"
     _description = "optesis direction"
-    _sql_constraints = [('name_unique', 'unique(name)', "Cette direction existe déja")]
+    #_sql_constraints = [('name_unique', 'unique(name)', "Cette direction existe déja")]
 
     name = fields.Char(String="direction", required=True, size=50)
     description = fields.Char(String="description")
@@ -18,7 +21,7 @@ class Direction(models.Model):
 class department(models.Model):
     _name = "optesis.department"
     _description = "optesis departement"
-    _sql_constraints = [('name_unique', 'unique(name)', "Ce département existe déja")]
+    #_sql_constraints = [('name_unique', 'unique(name)', "Ce département existe déja")]
 
     name = fields.Char(String="Département", required=True, size=50)
     description = fields.Char(String="description")
@@ -29,7 +32,7 @@ class department(models.Model):
 class Service(models.Model):
     _name = "optesis.service"
     _description = "optesis service"
-    _sql_constraints = [('name_unique', 'unique(name)', "Ce service existe déja")]
+    #_sql_constraints = [('name_unique', 'unique(name)', "Ce service existe déja")]
 
     name = fields.Char(String="Service", required=True, size=50)
     description = fields.Char(String="description")
@@ -38,11 +41,6 @@ class Service(models.Model):
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)
 
-    # @api.onchange("department_id")
-    # @api.one
-    # def onchange_department(self):
-    #     dir = self.env["optesis.direction"].browse(self.department_id.direction_id.id)
-    #     self.direction_id = dir.id
 
 
 class Agent(models.Model):
@@ -76,6 +74,8 @@ class Commune(models.Model):
     localite_id = fields.Many2one(comodel_name="optesis.localite", string="Localité", required=True)
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)
+
+
 
 class Site(models.Model):
     _name = "optesis.site"
@@ -127,33 +127,53 @@ class Room(models.Model):
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)
 
+class Articles(models.Model):
+    _name = "optesis.product"
+    _description = "standard des immobilisations"
+    #_sql_constraints = [('name_unique', 'unique(name)', 'Ce standard existe déja')]
+
+    name = fields.Char(string="Standard", required=True)
+    category_id = fields.Many2one("optesis.family", "Famille", required=True)
+    description = fields.Char(string="Description")
+    price = fields.Float(string="Prix", )
+    product_id = fields.Many2one(comodel_name="product.product", string="articles")
+    company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
+                                 default=lambda self: self.env.user.company_id)
+
+    @api.model
+    def create(self, vals):
+        product = self.env['product.product'].create({'name':vals['name']})
+        vals['product_id'] = product.id
+        return super(Articles, self).create(vals)
+
+class Famille(models.Model):
+    _name = "optesis.family"
+    _description = "Famille de l'immobilisation"
+    #_sql_constraints = [('name_unique', 'unique(name)', "Cette catégorie existe déja")]
+
+    name = fields.Char(string="Famille", required=True)
+    description = fields.Char(string="description")
+    company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
+                                 default=lambda self: self.env.user.company_id)
+
 
 class Condition(models.Model):
     _name = "optesis.condition"
     _description = "asset's conditions"
-    _sql_constraints = [('name_unique', 'unique(name)', "Cet état existe déja")]
+    #_sql_constraints = [('name_unique', 'unique(name)', "Cet état existe déja")]
 
     name = fields.Char(size=50, required=True, string="Condition")
     description = fields.Char(string="Description")
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)
 
-
-class PayingOff(models.Model):
-    _name = "optesis.poff"
-    _description = "paying-off table"
-
-    description = fields.Text(string="description")
-    year = fields.Integer(string="year")
-    price = fields.Integer(string="price")
-
 class History(models.Model):
     _name = 'optesis.account.asset.log'
     _description = "asset log"
 
     date = fields.Datetime(string="Date")
-    description = fields.Char(size=500, string="Changement")
-    asset_id = fields.Many2one(comodel_name="account.asset.asset", string="Immo")
+    description = fields.Char(size=500, string="Description")
+    asset_id = fields.Many2one(comodel_name="optesis.asset.asset", string="Immo")
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)
 
@@ -162,9 +182,9 @@ class Control(models.Model):
     _name = "optesis.control"
     _description = "inventory control"
 
-    name = fields.Char(size=100, string="Nom du controle",default= 'control_'+str(datetime.datetime.now()))
+    name = fields.Char(size=100, string="Nom du controle")
     description = fields.Char(string="Description")
-    asset_ids = fields.One2many("account.asset.asset", "control_id", "Inventaires")
+    asset_ids = fields.One2many("optesis.asset.asset.transient", "control_id", "Inventaires")
     site_id = fields.Many2one(comodel_name="optesis.site", string="Site", required=True)
     building_id = fields.Many2one(comodel_name="optesis.building", string="Batiment", required=True)
     level_id = fields.Many2one(comodel_name="optesis.level", string="Niveau",required=True)
@@ -181,6 +201,7 @@ class Control(models.Model):
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)
 
+
     _defaults = {
         'name': lambda obj, cr, uid, context: '/',
     }
@@ -192,15 +213,16 @@ class Control(models.Model):
         result = super(Control, self).create(vals)
         return result
 
-
     @api.multi
     def validate_control(self):
         if self.asset_ids:
             for asset in self.asset_ids:
-                real_assets = self.env['account.asset.asset'].search([('code_bar','=',asset.code_bar)])
+                real_assets = self.env['optesis.asset.asset'].search([('code_bar','=',asset.code_bar)])
                 if real_assets:
                     for real_asset in real_assets:
                         description = 'Changement '
+                        if self.site_id.id != real_asset.site.id:
+                            description += 'du site {} au site {}, '.format(real_asset.site.name, self.site_id.name)
                         if self.building_id.id != real_asset.building.id:
                             description += 'du building {} au building {}, '.format(real_asset.building.name, self.building_id.name)
                         if self.level_id.id != real_asset.level.id:
@@ -209,31 +231,33 @@ class Control(models.Model):
                             description += 'du local {} au local {}, '.format(real_asset.room.name, self.room_id.name)
                         if self.service_id.id != real_asset.service.id:
                             description += 'du service {} au service {}, '.format(real_asset.service.name, self.service_id.name)
-                        if self.condition_id.id != real_asset.condition.id:
-                            description += 'du condition {} au condition {}, '.format(real_asset.condition.name, self.condition_id.name)
+                        if asset.condition.id != real_asset.condition.id:
+                            description += 'du condition {} au condition {}, '.format(real_asset.condition.name, asset.condition.name)
                         log = self.env['optesis.account.asset.log']
                         log.create({'date': datetime.datetime.now(),
                                     'asset_id': real_asset.id,
                                     'description':description})
                         # update the real asset asset
-                        real_asset.update({'level': self.level_id.id,
+                        real_asset.update({'site': self.site_id.id,
+                                      'level': self.level_id.id,
                                       'building': self.building_id.id,
                                       'room': self.room_id.id,
                                       'service':self.service_id.id,
-                                      'condition': self.condition_id.id})
+                                      'condition': asset.condition.id})
                         # update the transient asset asset
-                        asset.update({'level': self.level_id.id,
+                        asset.update({'site': self.site_id.id,
+                                      'level': self.level_id.id,
                                       'building': self.building_id.id,
                                       'room': self.room_id.id,
                                       'service':self.service_id.id,
-                                      'condition': self.condition_id.id})
+                                      'condition': asset.condition.id})
             self.state = 'end'
 
     @api.multi
     @api.onchange('code_barre')
     def change_code_barre(self):
         if self.code_barre:
-            assets = self.env['account.asset.asset'].search([('code_bar','=',self.code_barre)])
+            assets = self.env['optesis.asset.asset'].search([('code_bar','=',self.code_barre)])
             if assets:
                 for asset in assets:
                     if self.asset_ids:
@@ -248,15 +272,17 @@ class Control(models.Model):
                         else:
                             self.asset_ids += self.env['optesis.asset.asset.transient'].create(
                                         {
-                                            'category_id' : asset.category_id.id,
+                                            'family_id' : asset.family_id.id,
                                             'product_id' : asset.product_id.id,
                                             'agents' : asset.agents.id,
                                             'code_bar' : asset.code_bar,
                                             'service' : asset.service.id,
-                                            'condition' : asset.condition.id,
+                                            'condition' : self.condition_id.id,
                                             'brand' : asset.brand,
                                             'specifications' : asset.specifications,
+                                            'department' : asset.department.id,
                                             'direction' : asset.direction.id,
+                                            'site' : asset.site.id,
                                             'building' : asset.building.id,
                                             'level' : asset.level.id,
                                             'room' : asset.room.id,
@@ -268,20 +294,22 @@ class Control(models.Model):
                                             'log_ids' : asset.log_ids,
                                             'last' : asset.last,
                                             'value' : asset.value,
-                                            #'date_service' : asset.date_service,
+                                            'date_service' : asset.date_service,
                                         })
                     else:
                         self.asset_ids += self.env['optesis.asset.asset.transient'].create(
                             {
-                                'category_id' : asset.category_id.id,
+                                'family_id' : asset.family_id.id,
                                 'product_id' : asset.product_id.id,
                                 'agents' : asset.agents.id,
                                 'code_bar' : asset.code_bar,
                                 'service' : asset.service.id,
-                                'condition' : asset.condition.id,
+                                'condition' : self.condition_id.id,
                                 'brand' : asset.brand,
                                 'specifications' : asset.specifications,
+                                'department' : asset.department.id,
                                 'direction' : asset.direction.id,
+                                'site' : asset.site.id,
                                 'building' : asset.building.id,
                                 'level' : asset.level.id,
                                 'room' : asset.room.id,
@@ -293,18 +321,20 @@ class Control(models.Model):
                                 'log_ids' : asset.log_ids,
                                 'last' : asset.last,
                                 'value' : asset.value,
-                                #'date_service' : asset.date_service,
+                                'date_service' : asset.date_service,
                             })
                 self.code_barre = None
+                #self.condition_id = None
             else:
                 return {
                     'type': 'ir.actions.act_window',
-                    'res_model': 'account.asset.asset',
+                    'res_model': 'optesis.asset.asset',
                     'view_type': 'form',
                     'view_mode': 'form',
                     'context': {
                         'default_code_bar': self.code_barre,
                         'default_service': self.service_id.id,
+                        'default_site': self.site_id.id,
                         'default_building': self.building_id.id,
                         'default_level': self.level_id.id,
                         'default_room': self.room_id.id,
@@ -318,43 +348,31 @@ class Control(models.Model):
         self.state = 'open'
 
 
-class Asset(models.Model):
-    _name = "account.asset.asset"
-    _inherit = "account.asset.asset"
+
+
+
+class OptesisAsset(models.Model):
+    _name = "optesis.asset.asset"
     _description = "optesis asset first module"
-    _sql_constraints = [('code_bar_unique', 'unique(code_bar)', "can't be duplicate the value of code bar")]
+    _sql_constraints = [('code_bar_unique', 'unique(company_id, code_bar)', "can't be duplicate the value of code bar")]
 
+    #name = fields.Char(string='Nom', required=False)
 
-    name = fields.Char(string='Nom', required=False)
+    family_id = fields.Many2one(comodel_name='optesis.family', string="Famille")
 
-    category_id = fields.Many2one(comodel_name="account.asset.category", string="Famille", required=False)
+    product_id = fields.Many2one(comodel_name="optesis.product", string="Standard")
 
-    product_id = fields.Many2one(comodel_name="product.template", string="Standard")
+    agents = fields.Many2one(comodel_name='optesis.agent', string='Employé')
 
-    description = fields.Text()
-
-    agents = fields.Many2one(comodel_name='optesis.agent', string='Nom')
-
-    value = fields.Float(string="Prix")
-
-    reference = fields.Char(string="Référence")
-
-    date_assignation = fields.Date(string="date d'assignation")
-
-    commissioning = fields.Date(string="date de commision")
-
-    type = fields.Selection([('fixed', 'Fix'),
-                             ('capital','Tangible capital')])
-
-    code_bar = fields.Char(string="Code barre", default=None, default_focus=True)
+    code_bar = fields.Char(string="Code barre", default=None)
 
     service = fields.Many2one(comodel_name="optesis.service", string="Service")
 
-    condition = fields.Many2one(comodel_name="optesis.condition", string="Condition")
+    condition = fields.Many2one(comodel_name="optesis.condition", string="État")
 
     brand = fields.Char(string="Marque")
 
-    specifications = fields.Char(string="spécifications")
+    specifications = fields.Char(string="Spécifications")
 
     department = fields.Many2one(comodel_name="optesis.department", string="Département")
 
@@ -368,26 +386,9 @@ class Asset(models.Model):
 
     room = fields.Many2one(comodel_name="optesis.room", string="Local")
 
-    date_disposal = fields.Date(string=" Date d'acquisition")
-
-    num_facture_vente = fields.Char(string="Numéro facture de vente")
-
-    type_disposal = fields.Selection([('vente','Sell'), ('achat', 'Buy')], string="Type de cession")
-
-    value_disposal = fields.Integer(string="valeur de la session")
-
-    buyer = fields.Many2one(comodel_name='optesis.employee', string="Agent")
-
-    est_amortie = fields.Boolean(string="Année de cession ")
-
-    history = fields.Many2many(comodel_name="optesis.agent", string="history")
-
-   # payoff = fields.Many2many(comodel_name="optesis.poff", string="Paying off")
-
     inventory_date = fields.Date(required=True, default=datetime.date.today(), string="Date d'inventaire", readonly=True, store=True)
 
-
-    asset_number = fields.Char(string="Numéro immo", )
+    asset_number = fields.Char(string="Numéro immo", readonly=True)
 
     old_transfert_id = fields.Many2one(comodel_name="optesis.asset.transfert")
 
@@ -399,9 +400,12 @@ class Asset(models.Model):
 
     last = fields.Datetime(default=datetime.datetime.now(), string='derniere modification', )
 
+    value = fields.Float("Valeur Brute")
+
+    date_service = fields.Date("Date de Mise en service")
+
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)
-
 
     _defaults = {
         'asset_number': lambda obj, cr, uid, context: '/',
@@ -409,18 +413,16 @@ class Asset(models.Model):
 
     @api.model
     def create(self, vals):
-        seq = self.env['ir.sequence'].next_by_code('account.asset.asset') or '/'
+        seq = self.env['ir.sequence'].next_by_code('optesis.asset.asset') or '/'
         vals['asset_number'] = seq
-        # vals['name'] = vals['code_bar'] or "/"
-        return super(Asset, self).create(vals)
-
+        return super(OptesisAsset, self).create(vals)
 
     @api.multi
     def asset_renew(self):
         next_record = self
         new_form = {
             'type': 'ir.actions.act_window',
-            'res_model': 'account.asset.asset',
+            'res_model': 'optesis.asset.asset',
             'view_type': 'form',
             'view_mode': 'form',
             #'context': "{'default_CHILD_FIELD' : 'module.id' }",
@@ -429,37 +431,30 @@ class Asset(models.Model):
                        'default_product_id': self.product_id.id,
                        'default_direction':self.direction.id,
                        'default_site': self.site.id,
-                       'default_category_id':self.category_id.id,
+                       'default_family_id':self.family_id.id,
                        'default_department': self.department.id,
                        'default_service':self.service.id,
                        'default_room': self.room.id,
                        'default_building': self.building.id,
                        'default_level': self.level.id,
                        'default_condition': self.condition.id,
-                       'default_value':self.value,
+                       'default_value' : self.value,
+                       'default_date_service' : self.date_service,
                        },
             'target': 'new',
         }
         return new_form
 
-        #self.code_bar= ""
-
-    # @api.constrains('code_bar')
-    # @api.one
-    # def code_change(self, context=None):
-    #    res = self.pool.get("asset").search(self._cr, self._uid, [('code_bar', '=', self.code_bar)], context=context)
-    #    if not res and res[0]:
-    #        raise ValidationError("the code bar %s already exist" % self.code_bar)
-    #        self.code_bar = None
-
-   # @api.model
-    #def _get_previous_record(self, context=None, name=None, model=None):
-    #    res = self.env[model].search([('name','=',name)])
-    #    return res.id
+    @api.multi
+    def action_save(self):
+        #your code
+        self.ensure_one()
+        #close popup
+        return {'type': 'ir.actions.act_window_close'}
 
     @api.onchange("product_id")
     def onchange_name(self):
-        self.category_id = self.product_id.asset_category_id
+        self.family_id = self.product_id.category_id
         self.last = datetime.datetime.now()
 
     @api.onchange("service")
@@ -474,38 +469,9 @@ class Asset(models.Model):
         self.direction = dir.id
         self.last = datetime.datetime.now()
 
-    @api.onchange("product_id","agents","code_bar","condition","brand","specifications","direction","site","building","level","room","inventory_date","asset_number")
+    @api.onchange("family_id","agents","code_bar","condition","brand","specifications","direction","site","building","level","room","inventory_date","asset_number")
     def onchange_last(self):
         self.last = datetime.datetime.now()
-
-
-
-class asset_account_invoice_line(models.Model):
-    _inherit="account.invoice.line"
-
-    # @api.v7
-    @api.one
-    def asset_create(self):
-        if self.asset_category_id:
-            vals = {
-                'name': self.name,
-                'product_id': self.product_id.id,
-                'code': self.invoice_id.number or False,
-                'category_id': self.asset_category_id.id,
-                'value': self.price_subtotal_signed,
-                'partner_id': self.invoice_id.partner_id.id,
-                'company_id': self.invoice_id.company_id.id,
-                'currency_id': self.invoice_id.company_currency_id.id,
-                'date': self.asset_start_date or self.invoice_id.date_invoice,
-                'invoice_id': self.invoice_id.id,
-            }
-            changed_vals = self.env['account.asset.asset'].onchange_category_id_values(vals['category_id'])
-            vals.update(changed_vals['value'])
-            asset = self.env['account.asset.asset'].create(vals)
-            if self.asset_category_id.open_asset:
-                asset.validate()
-        return True
-
 
 
 class ParticularReport(models.AbstractModel):
@@ -534,15 +500,16 @@ class ParticularReport(models.AbstractModel):
         return report_obj.render('optimo.asset_print_inventory', docargs)
 
 
+
 class OptesisAssetTransiant(models.Model):
     _name = "optesis.asset.asset.transient"
     _description = "optesis asset first module transient"
 
     # name = fields.Char(string='Nom', required=False)
 
-    category_id = fields.Many2one(comodel_name="account.asset.category", string="Famille", required=False)
+    family_id = fields.Many2one(comodel_name='optesis.family', string="Famille")
 
-    product_id = fields.Many2one(comodel_name="product.template", string="Standard")
+    product_id = fields.Many2one(comodel_name="optesis.product", string="Standard")
 
     agents = fields.Many2one(comodel_name='optesis.agent', string='Employé')
 
@@ -556,7 +523,11 @@ class OptesisAssetTransiant(models.Model):
 
     specifications = fields.Char(string="Spécifications")
 
+    department = fields.Many2one(comodel_name="optesis.department", string="Département")
+
     direction = fields.Many2one(comodel_name="optesis.direction", string="Direction")
+
+    site = fields.Many2one(comodel_name="optesis.site", string="Site")
 
     building = fields.Many2one(comodel_name="optesis.building", string="Bâtiment")
 
@@ -579,6 +550,8 @@ class OptesisAssetTransiant(models.Model):
     last = fields.Datetime(default=datetime.datetime.now(), string='derniere modification', )
 
     value = fields.Float("Valeur Brute")
+
+    date_service = fields.Date("Date de Mise en service")
 
     company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True,
                                  default=lambda self: self.env.user.company_id)

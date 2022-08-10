@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+        <report
+           id="action_report_cel_vel"
+           string="ANNEXE CEL VL"
+           model="optesis.etat.cel"
+           report_type="qweb-pdf"
+           file="optimo_fiscal.report_etat_cel_vel"
+           name="optimo_fiscal.report_etat_cel_vel"
+           paperformat="optimo_fiscal.paperformat_custom_landscape"
+        />
+         <report
+           id="optesis_declaration_celvl"
+           string="Cel sur la valeur locative - Declaration"
+           model="optesis.etat.cel"
+           report_type="qweb-pdf"
+           file="optimo_fiscal.optesis_cel_declaration"
+           name="optimo_fiscal.optesis_cel_declaration"
+           
+        />
+        <report
+               id="action_etat_cel_xls"
+               model="optesis.etat.cel"
+               string="Annexe CEL VEL Xls"
+               report_type="xlsx"
+               name="optimo_fiscal.report_cel_vel"
+               file="optimo_fiscal.report_cel_vel"
+               attachment_use="False"
+               />
+      
+       </data>
+      </odoo>
+ 

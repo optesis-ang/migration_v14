@@ -8,6 +8,7 @@
                 <field name="name"/>
                 <field name="direction_id"/>
                 <field name="description"/>
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -24,6 +25,7 @@
                         <field name="name"/>
                         <field name="direction_id"/>
                         <field name="description"/>
+                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                     </group>
                 </group>
 
@@ -39,6 +41,7 @@
             <tree string="direction_list">
                 <field name="name"/>
                 <field name="description"/>
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -54,6 +57,7 @@
                     <group colspan="2" rowspan="2" string="Direction">
                         <field name="name"/>
                          <field name="description"/>
+                         <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                     </group>
                 </group>
 
@@ -69,7 +73,8 @@
                 <field name="name"/>
                 <field name="direction_id"/>
                 <field name="department_id"/>
-                <field name="description"/>        
+                <field name="description"/>
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -87,6 +92,7 @@
                         <field name="department_id"/>
                         <field name="direction_id"/>
                         <field name="description"/>
+                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                     </group>
                 </group>
 
@@ -101,7 +107,7 @@
         <act_window id="win005" name="Departments" res_model="optesis.department" view_mode="tree,form"/>
         <menuitem id="department_menu_2" name="Departments" parent="asset_menu_3" action="win005" sequence="7"/>
 
-        
+
 
         <act_window id="win006" name="Services" res_model="optesis.service" view_mode="tree,form"/>
         <menuitem id="service_menu_2" name="Services" parent="asset_menu_3" action="win006" sequence="8"/>

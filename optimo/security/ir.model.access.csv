@@ -1,6 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+optesis_asset_asset_manager,optesis.asset.asset.manager manager,model_optesis_asset_asset,group_manager,1,1,1,1
 optesis_control_manager,optesis.control.manager manager,model_optesis_control,group_manager,1,1,1,1
 optesis_asset_transfert_manager,optesis.asset.transfert.manager manager,model_optesis_asset_transfert,group_manager,1,1,1,1
+optesis_family_manager,optesis.family.manager manager,model_optesis_family,group_manager,1,1,1,1
+optesis_product_manager,optesis.product.manager manager,model_optesis_product,group_manager,1,1,1,1
 optesis_condition_manager,optesis.condition.manager manager,model_optesis_condition,group_manager,1,1,1,1
 optesis_direction_manager,optesis.direction.manager manager,model_optesis_direction,group_manager,1,1,1,1
 optesis_department_manager,optesis.department.manager manager,model_optesis_department,group_manager,1,1,1,1
@@ -19,8 +22,11 @@ product.access_product_product_employee,product.product employee,product.model_p
 product.access_product_template_employee,product.template employee,product.model_product_template,group_manager,1,1,1,1
 product.access_product_price_history_employee,prices.history employee,product.model_product_price_history,group_manager,1,1,1,1
 
+optesis_asset_asset_inventaire,optesis.asset.asset.inventaire inventaire,model_optesis_asset_asset,group_inventaire,1,1,1,1
 optesis_control_inventaire,optesis.control.inventaire inventaire,model_optesis_control,group_inventaire,1,1,1,1
 optesis_asset_transfert_inventaire,optesis.asset.transfert.inventaire inventaire,model_optesis_asset_transfert,group_inventaire,1,1,1,1
+optesis_family_inventaire,optesis.family.inventaire inventaire,model_optesis_family,group_inventaire,1,1,1,1
+optesis_product_inventaire,optesis.product.inventaire inventaire,model_optesis_product,group_inventaire,1,1,1,1
 optesis_condition_inventaire,optesis.condition.inventaire inventaire,model_optesis_condition,group_inventaire,1,1,1,1
 optesis_direction_inventaire,optesis.direction.inventaire inventaire,model_optesis_direction,group_inventaire,1,1,1,1
 optesis_department_inventaire,optesis.department.inventaire inventaire,model_optesis_department,group_inventaire,1,1,1,1
@@ -39,8 +45,11 @@ product.access_product_product_employee,product.product employee,product.model_p
 product.access_product_template_employee,product.template employee,product.model_product_template,group_inventaire,1,1,1,1
 product.access_product_price_history_employee,prices.history employee,product.model_product_price_history,group_inventaire,1,1,1,1
 
+optesis_asset_asset_admin,optesis.asset.asset.admin admin,model_optesis_asset_asset,group_admin,1,1,1,1
 optesis_control_admin,optesis.control.admin admin,model_optesis_control,group_admin,1,1,1,1
 optesis_asset_transfert_admin,optesis.asset.transfert.admin admin,model_optesis_asset_transfert,group_admin,1,1,1,1
+optesis_family_admin,optesis.family.admin admin,model_optesis_family,group_admin,1,1,1,1
+optesis_product_admin,optesis.product.admin admin,model_optesis_product,group_admin,1,1,1,1
 optesis_condition_admin,optesis.condition.admin admin,model_optesis_condition,group_admin,1,1,1,1
 optesis_direction_admin,optesis.direction.admin admin,model_optesis_direction,group_admin,1,1,1,1
 optesis_department_admin,optesis.department.admin admin,model_optesis_department,group_admin,1,1,1,1
@@ -59,8 +68,11 @@ product.access_product_product_employee,product.product employee,product.model_p
 product.access_product_template_employee,product.template employee,product.model_product_template,group_admin,1,1,1,1
 product.access_product_price_history_employee,prices.history employee,product.model_product_price_history,group_admin,1,1,1,1
 
+optesis_asset_asset_read_all,optesis.asset.asset.read.all all,model_optesis_asset_asset,,1,1,1,1
 optesis_control_read_all,optesis.control.read.all all,model_optesis_control,,1,1,1,1
 optesis_asset_transfert_read_all,optesis.asset.transfert.read.all all,model_optesis_asset_transfert,,1,1,1,1
+optesis_family_read_all,optesis.family.read.all all,model_optesis_family,,1,1,1,1
+optesis_product_read_all,optesis.product.read.all all,model_optesis_product,,1,1,1,1
 optesis_condition_read_all,optesis.condition.read.all all,model_optesis_condition,,1,1,1,1
 optesis_direction_read_all,optesis.direction.read.all all,model_optesis_direction,,1,1,1,1
 optesis_department_read_all,optesis.department.read.all all,model_optesis_department,,1,1,1,1

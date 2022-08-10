@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+<template id="optesis_cel_declaration">
+         <t t-call="web.html_container">
+
+       <!-- Re-browse of the record with the partner lang -->
+      
+       <t t-call="optimo_fiscal.etat_cel_vel_external_view">
+           <div class="page">
+               <strong><p style="font-size:12px;margin-top:10px">CONTRIBUABLE ET RENSEIGNEMENTS FISCAUX</p></strong>
+               <div class="row" style="margin-top:20px">
+                   <div class="col-6">
+                       <table style="border-collapse:collapse">
+                           <tr>
+                               <td><strong><p style="font-size:12px">NINEA : </p></strong></td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <strong>
+                                       <p style="font-size:12px;padding-top:10px">COMPTE D'IMPÔT</p> </strong></td>
+                           </tr>
+                            <tr>
+                               <td> 
+                                    <strong>
+                                   <p style="font-size:12px;padding-top:20px">ÉTABLISSEMENT</p>
+                                     </strong>
+                                    </td>
+                           </tr>
+                            <tr>
+                               <td>
+                                    <strong>
+                                        <p style="font-size:12px;padding-top:10px">DÉBUT DE LA PÉRIODE D'IMPOSITION </p>
+                                         </strong>
+                                        </td>
+                           </tr>
+                            <tr>
+                               <td> 
+                                  
+                                    <strong>
+                                        <p style="font-size:12px;padding-top:10px">DATE LIMITE DE DÉPÔT </p>
+                                    </strong>
+                                </td>
+                           </tr>
+                           <tr>
+                               <td> 
+                                    <strong><p style="font-size:12px;padding-top:25px">ADRESSE DE CORRESPONDANCE </p>
+                                         </strong>
+                                        
+                                        </td>
+                           </tr>
+                           
+                       </table>
+                   </div>
+                     
+               </div>
+               <div class="row">
+                    <div class="col-8" align="right" style="margin-top:-170px">
+                       <table style="border-collapse:collapse">
+                           <tr>
+                               <td><strong><p style="font-size:13px;margin-top:-25px">PERIODE DE L'IMPOSITION : </p></strong></td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <strong>
+                                       <p style="font-size:12px;padding-top:10px">
+                                           NOM DU CONTRIBUABLE                   
+                                       </p> </strong></td>
+                           </tr>
+                            <tr>
+                               <td>
+                                   <strong>
+                                       <p style="font-size:12px;padding-top:10px">NATURE D'IMPÔT </p> </strong></td>
+                           </tr>
+                            <tr>
+                               <td> 
+                                    <strong>
+                                   <p style="font-size:12px;padding-top:20px">OBJET IMPOSABLE</p>
+                                     </strong>
+                                    </td>
+                           </tr>
+                            <tr>
+                               <td>
+                                    <strong>
+                                        <p style="font-size:12px;padding-top:10px">FIN DE LA PÉRIODE D'IMPOSITION </p>
+                                         </strong>
+                                        </td>
+                           </tr>
+                            <tr>
+                               <td> 
+                                  
+                                    <strong>
+                                        <p style="font-size:12px;padding-top:10px">DATE LIMITE DE PAIEMENT </p>
+                                    </strong>
+                                </td>
+                           </tr>
+                         <tr>
+                               <td> 
+                                    <strong><p style="font-size:12px;padding-top:15px">LOCALISATION </p>
+                                         </strong>
+                                        
+                                        </td>
+                           </tr>
+                           
+                       </table>
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="col-12" style="margin-top:80px">
+                       <table style="width:100%">
+                             <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px" ></p>
+                               </td>
+                           
+                           
+                               <td style="width:15%" align="center">
+                               <p style="font-size:14px;margin-top:10px;font-weight:bold">Annexe fiscale</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px;font-weight:bold">
+                                      Ligne</p>
+                               </td>
+                               <td height="10px" style="width:18%;" align="center" >
+                                   <p style="font-size:14px;font-weight:bold"><span>Montant</span></p>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px" >Valeur brute des terrains imposables inscrits à l'actif du bilan</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                              <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Valeur brute des constructions imposables inscrits à l'actif du bilan</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p>5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Valeur brute des agencements et installations imposables inscrites à l'actif du bilan</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Valeur brute totale des terrains, constructions, agencements et installations (L5+L10+L15)</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Valeur locative totale des locaux inscrits au bilan (L20x7%)</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            
+                         
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Loyer versé par l'exploitant locataire</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Loyer estimé pour les locaux occupés à titre gratuit</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Loyer perçu par le loueur professionnel</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">CEL terrains, constructions, installations et aménagements inscrits au bilan (L25x20%)</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">CEL loueur professionnel (chambres meublées, fonds de commerce, sous-location d'immeubles non meublés)(L40x20%)</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">CEL locataire ou occupant à titre gratuit (L35 x 15%)</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">Nombre de mois d'activité (depuis la création ou jusqu'à la cessation)</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td style="width:64%">
+                               <p style="font-size:14px;margin-top:10px">CEL totale à payer (L45+L50+L55)</p>
+                               </td>
+                           
+                           
+                               <td style="width:15%">
+                               <p style="font-size:14px;margin-top:10px">........................................................</p>
+                               </td>
+                                  <td style="width:3%" align="right">
+                               <p style="font-size:14px;margin-top:10px">5</p>
+                               </td>
+                               <td height="10px" style="width:18%;border:1px solid;vertical-align:center" align="center" >
+                                   <p style="font-size:14px;"><span>10000000</span></p>
+                               </td>
+                           </tr>
+                       </table>
+                   </div>
+               </div>
+
+               
+               </div>
+       </t>
+    </t>
+                   
+</template>
+           </data>
+    </odoo>

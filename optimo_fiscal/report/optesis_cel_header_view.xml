@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="cel_vel_external_layout_header">
+         <t t-foreach="docs" t-as="o">
+            <div class="header">
+                <div class="row">
+                    <div class="col-12">
+                        <img align="left" src="/optimo_fiscal/static/src/images/header.png"
+                                 style="width:100%;height:auto;"/>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom:2px solid;padding:5px;margin-top:20px">
+                    <div class="col-12 text-center" >
+                        <strong>
+                        <p  style="font-size:20px">
+                            CEL SUR LA VALEUR LOCATIVE - DECLARATION
+                            </p>
+                        </strong>
+                    </div>
+                </div>
+             
+
+            </div>
+             <div class="footer" style="border:2px solid dotted">
+               
+                        <img align="left" src="/optimo_fiscal/static/src/images/header.png"
+                                 style="width:90%;height:auto;"/>
+                 
+            </div>
+    </t>
+        </template>
+    </data>
+</odoo>

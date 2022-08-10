@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+<template id="report_etat_cel_vel">
+         <t t-call="web.html_container">
+
+       <!-- Re-browse of the record with the partner lang -->
+      
+       <t t-call="web.external_layout">
+           <div class="page">
+                          <style>
+                    .Row
+                    {
+                    display: table;
+                    table-layout: fixed; /*Optional*/
+                    width:100%;
+
+                    }
+                    .Column
+                    {
+                    display: table-cell;
+                    background-color: white;
+
+                    /*Optional*/
+                    }
+                    .mytop{
+                    margin-top:-30px;
+                    }
+                    .petit_titre{
+                    font-size: 15px;
+                    }
+                    .reglagage_hr{
+                    border: 0.5px solid black;
+                    width:25%;
+                    height:1px;
+                    background-color:black;
+
+                    margin-left: 10%;
+                    }
+
+                    .normal_paragraph{
+                    font-size: 17px;
+                    }
+                    .margin-add{
+                    margin-top: 20px;
+                    }
+                    .margin-retrait{
+                    margin-top: 10px;
+                    }
+                    h6{
+                    text-align: center;
+                    margin-top:20%;
+                    }
+                    .margin-perso{
+                    margin-top:5%;
+                    margin-left:30px;
+                    }
+                    .margin-perso-left-right{
+                    margin-left:-10px;
+                    /*margin-right: 40%;*/
+                    }
+                    .myborder{
+                    border: 7px solid black;
+                    width: 1000%;
+                    margin-left:5px;
+                    }
+                   
+                    .lefth6{
+                    margin-left: -105px;
+                    }
+                    #margin-end{
+                    margin-left:75px;
+                    margin-top: 17px;
+                    }
+                    .paragraphe{
+                    margin:1px;
+                    padding:1px;
+                    }
+
+                 
+                   
+                    .italic{
+                        font-style:italic;
+                    }
+                    .small_paragraph1{
+                         font-size:13px;
+                        border:1px solid;
+                        vertical-align:center;
+                            
+                            
+                            
+                    }
+                     .align_center{
+                         font-size:15px;
+                        
+                        vertical-align:center;
+                        align:center;
+                              word-wrap: break-word;
+
+                            
+                            
+                            
+                    }
+                    .marg0{
+                        padding:0px;
+                        margin:0px;
+                        font-size:13px;
+                    }
+                 </style>
+               <div class="oe_structure"/>
+               <div class="row">
+                   <div class="col-12">
+                       <p class="text-center" style="font-size:20px">ANNEXE CEL VL</p>
+               <table style="width:100%;border:1px solid;border-collapse:collapse; ">
+                      <thead>
+                          <tr>
+                        <th class="text-center small_paragraph1 " align="center">
+                            <p class="text-center marg0">Adresse</p>
+                            <p class="text-center marg0">Exacte</p>
+                            <p class="text-center marg0">de l'immeuble</p>
+
+
+                              </th>
+                             <th class="text-center small_paragraph1 " align="center"><p  class=" marg0 text-center" style="margin-top:50%"> N°</p> 
+                            <p class="marg0 text-center" >NICAD</p>
+                              </th>
+                               <th class="text-center small_paragraph1 " align="center">
+                                   
+                            <p class="marg0 text-center">Commune</p>
+                                <p class="marg0 text-center"> de situation</p>
+
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center"><p  class=" marg0 text-center">Valeur brute   </p> 
+                            <p class="marg0 text-center">des terrains inscrits</p>
+                                    <p class="marg0 text-center">à l'actif du bilan</p>
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center">
+                                    <p  class=" marg0 text-center"> Valeur brute des  </p> 
+                                    <p  class=" marg0 text-center"> constructions inscrites</p> 
+                                    <p class="marg0 text-center">à l'actif du bilan</p>
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center">
+                                    <p  class=" marg0 text-center"> Valeur brute des agencements </p> 
+                                          <p  class=" marg0 text-center"> et installations imposables </p> 
+                                <p  class=" marg0 text-center"> inscrites à l'actif du bilan</p> 
+                          
+                          
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center"><p  class=" marg0 text-center"> Valeur brute total </p> 
+                            <p class="marg0 text-center">des terrains constructions </p>
+                                    <p class="marg0 text-center">agencements et installations</p>
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center">
+                                    <p  class=" marg0 text-center"> Valeur locative totale </p> 
+                            <p class="marg0 text-center">des locaux inscrits</p>
+                                    <p class="marg0 text-center">au bilan (colonne 7 x7%)</p>
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center">
+                            <p class="marg0 text-center">Loyer versé par l'exploitant locataire</p>
+                            <p class="marg0 text-center">par </p>       
+                            <p class="marg0 text-center">l'exploitant locataire</p>
+
+
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center">
+                                    <p  class=" marg0 text-center">Loyer estimé </p> 
+                                    <p  class=" marg0 text-center">pour les locaux occupés </p> 
+                                    <p  class=" marg0 text-center"> à titre gratuit</p> 
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center">
+                                    <p  class=" marg0 text-center"> Loyer perçu </p> 
+                                    <p class="marg0 text-center">par le</p>
+                                    <p class="marg0 text-center">loueur professionnel</p>
+
+                              </th>
+                                  <th class="text-center small_paragraph1 " align="center">
+                                      <p  class=" marg0 text-center"> CEL</p> 
+                                      <p  class=" marg0 text-center">propriétaire</p>
+                                      <p  class=" marg0 text-center">(colonne 8 x20%)</p> 
+
+                              </th>
+                                <th class="text-center small_paragraph1 " align="center">
+                                      <p  class=" marg0 text-center"> CEL</p> 
+                                      <p  class=" marg0 text-center">Loueur</p>
+                                      <p  class=" marg0 text-center">(colonne 11 x20%)</p> 
+
+                              </th>
+                               <th class="text-center small_paragraph1 " align="center">
+                                      <p  class=" marg0 text-center"> CEL</p> 
+                                      <p  class=" marg0 text-center">locataire </p>
+                                      <p  class=" marg0 text-center">(colonne 9 +10 70)  x15%</p> 
+
+                              </th>
+                               <th class="text-center small_paragraph1 " align="center">
+                                      <p  class=" marg0 text-center"> CEL</p> 
+                                      <p  class=" marg0 text-center">Totale </p>
+                                      <p  class=" marg0 text-center">(colonne 12+13+14)</p> 
+
+                              </th>
+                               
+                         
+                          </tr>
+                   </thead>
+                   <tbody style="border:1px solid">
+                       <tr style="">
+                                    <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           1
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           2
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           3
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           4
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           5
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           6
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           7
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                          8
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           9
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                          10
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           11
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                          12
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           13
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                       14
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           15
+                                    </td>
+                            </tr>
+                   
+                       <!--<t t-set="tab_commune" t-value="[]"/>
+                       
+                        <t t-foreach="docs" t-as="d">
+
+                       
+
+                                <t t-set="tab_commune" t-value="tab_commune+[d.commune]"/>
+
+                            </t>
+
+                            <t t-foreach="set(tab_commune)" t-as="commune">
+                                <t t-set="total_cel" t-value="0"/>
+
+                                <div><strong t-esc="commune"/></div>
+
+                                <t t-foreach="docs" t-as="d">
+
+                                    <t t-if="commune==d.commune">
+                                     <t t-set="total_cel" t-value="total_cel+d.valeur_brute"/>
+                                        <div><strong t-esc="total_cel"/></div>
+
+
+                                        <t t-set="extract_value" t-value="d.num_compte[:-4]"/>
+
+                                        <div><span t-esc="extract_value"/></div>
+                                         <div><strong t-esc="total_cel"/></div>
+
+                                       
+
+                                    </t>
+
+                                </t>
+                                                            <div><strong t-esc="total_cel"/></div>
+
+
+                </t>-->
+                       
+                        <t t-set="tab_commune" t-value="[]"/>
+                         <t t-foreach="docs" t-as="d">
+
+                       
+
+                                <t t-set="tab_commune" t-value="tab_commune+[d.commune]"/>
+
+                            </t>
+                        
+                            
+                              <t t-set="total_terraing" t-value="0"/>
+                                    <t t-set="total_constructiong" t-value="0"/>
+                                    <t t-set="total_actifg" t-value="0"/>
+                                    <t t-set="total_agenceg" t-value="0"/>
+                                    <t t-set="total_loyerg" t-value="0"/>
+                <t t-foreach="set(tab_commune)" t-as="commune">
+                                <t t-set="total_cel" t-value="0"/>
+                                 <t t-set="total_terrain" t-value="0"/>
+                                    <t t-set="total_construction" t-value="0"/>
+                                    <t t-set="total_actif" t-value="0"/>
+                                    <t t-set="total_agence" t-value="0"/>
+                                    <t t-set="total_loyer" t-value="0"/>
+
+                               
+                                <t t-foreach="docs" t-as="d">
+                                        <t t-if="commune==d.commune">
+                                            <t t-set="address" t-value="d.address"/>
+                                            <t t-set="nnicad" t-value="d.nnicad"/>
+                                            
+                                            <t t-set="total_cel" t-value="total_cel+d.valeur_brute"/>
+                                            <t t-if="d.num_compte[:-3] =='222'">
+                                                <t t-set="total_terrain" t-value="total_terrain+d.valeur_brute"/>
+                                                <t t-set="total_terraing" t-value="total_terraing+d.valeur_brute"/>
+                                            </t>
+                                             <t t-if="d.num_compte[:-3] =='231'">
+                                                <t t-set="total_construction" t-value="total_construction+d.valeur_brute"/>
+                                                 <t t-set="total_constructiong" t-value="total_constructiong+d.valeur_brute"/>
+                                            </t>
+                                      
+                                            <t t-if="d.num_compte[:-3] =='238'">
+                                                <t t-set="total_actif" t-value="total_actif+d.valeur_brute"/>
+                                                <t t-set="total_actifg" t-value="total_actifg+d.valeur_brute"/>
+                                                
+                                            </t>
+                                              <t t-if="d.num_compte[:-3] =='223'">
+                                                <t t-set="total_agence" t-value="total_agence+d.valeur_brute"/>
+                                                  <t t-set="total_agenceg" t-value="total_agenceg+d.valeur_brute"/>
+                                            </t>
+                                             <t t-if="d.num_compte[:-3] =='622'">
+                                                <t t-set="total_loyer" t-value="total_loyer+d.valeur_brute"/>
+                                                 <t t-set="total_loyerg" t-value="total_loyerg+d.valeur_brute"/>
+                                            </t>
+                                         <!--<t t-set="total_cel" t-value="total_cel+d.valeur_brute"/>
+                                            <div><strong t-esc="total_cel"/></div>
+
+
+                                            <t t-set="extract_value" t-value="d.num_compte[:-4]"/>
+
+                                            <div><span t-esc="extract_value"/></div>
+                                             <div><strong t-esc="total_cel"/></div>-->
+
+
+
+                            </t>
+                     
+
+                        </t>
+                            <tr style="" >
+                                    <td align="center" class="small_paragraph1" style="border:1px solid ;" >
+                                     
+                                               <span t-esc="address" />
+                                       
+                                        
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <span t-esc="nnicad" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <span t-esc="commune" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                         
+                                     <span  t-esc="'{0:,.0f}'.format(int(total_terrain)).replace(',', '.')"/>
+
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           
+                                         
+                                     <span  t-esc="'{0:,.0f}'.format(int(total_construction)).replace(',', '.')"/>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                         
+                                     <span  t-esc="'{0:,.0f}'.format(int(total_actif)).replace(',', '.')"/>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                          <span  t-esc="'{0:,.0f}'.format(int(total_agence)).replace(',', '.')"/>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           
+                                     <span  t-esc="'{0:,.0f}'.format(int(total_agence * 0.07)).replace(',', '.')"/>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                            <span t-esc="total_loyer" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <span t-esc="(total_agence * 0.07)*(0.2)" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                            </tr>
+                            
+                                                            
+
+
+                </t>
+                         
+                            <tr style="" >
+                                    <td align="center" class="small_paragraph1" style="border:1px solid ;" >
+                                     
+                                        <strong><span>Totaux</span></strong>
+                                       
+                                        
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                            <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <span t-esc="total_terraing"
+/>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           
+                                         <span t-esc="total_constructiong" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                          <span t-esc="total_actifg" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <span t-esc="total_agenceg" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <span t-esc="total_agenceg * 0.07" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                            <span t-esc="total_loyerg" />
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                                 <td align="center" class="small_paragraph1" style="border:1px solid ;">
+                                           <![CDATA[&nbsp;]]>
+                                    </td>
+                            </tr>
+                             
+                     
+                   </tbody>
+                </table> 
+                      
+            </div>
+           </div>
+               </div>
+       </t>
+    </t>
+                   
+</template>
+           </data>
+    </odoo>

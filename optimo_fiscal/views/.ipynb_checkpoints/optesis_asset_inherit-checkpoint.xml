@@ -1,0 +1,246 @@
+<odoo>
+    <data>
+        <!--<record id="action_view_pivot" model="ir.actions.act_window">    
+            <field name="name">View Pivot</field>    
+            <field name="res_model">optesis.etat.cel</field>  
+            <field name="view_mode">pivot</field>      
+            <field name="domain">[]</field>   
+            <field name="help" type="html">          
+                <p class="oe_view_nocontent_create">Enter the target</p>    
+            </field>  
+        </record>-->
+
+        <record id="view_pivot" model="ir.ui.view">  
+    <field name="name">pivot</field>  <field name="model">optesis.etat.cel</field>  
+    <field name="arch" type="xml">      
+        <pivot string="Pivot View">      
+             <field name="product_id" type="row"/>  
+            <field name="num_compte" type="row"/> 
+          
+
+        </pivot>  
+             </field>
+</record>
+           
+      <record model="ir.ui.view"  id="list_etat_taxable">
+            <field name="priority" eval="10"/>
+            <field name="name">ETAT CEL VL</field>
+            <field name="model">optesis.etat.cel</field>
+            <field name="arch" type="xml">
+      
+                <tree string="ETAT CEL VL" >
+                   
+                    
+                    <field name="product_id" />
+                     <field name="num_compte"/>
+                    <field name="category_id" />
+                    <field name="valeur_brute" />
+                    <field name="is_taxable" />
+                    <field name="base_taxable"/>
+                    <field name="propriete" />         
+                    <field name="taux_cel_vel"/>  
+                    <field name="cel_vel" sum="Total CEL VEL"/>
+                    <field name="commune"/>  
+
+                   
+                
+                    
+
+                </tree>
+              
+                
+            </field>
+        </record>
+           <record model="ir.ui.view" id="etat_seacrh_view">
+             <field name="priority" eval="1"/>
+            <field name="name">optesis.etat.cel.search</field>
+            <field name="model">optesis.etat.cel</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group expand="0" string="group_by">
+                        <filter name='group_commune_id' string="Commune" context="{'group_by':'commune'}" />
+                        <!--<filter name='group_product' string="Product" context="{'group_by':'product_id'}"/>
+                        <filter name='group_direction' string="Direction" context="{'group_by':'direction'}"/>
+                        <filter name='group_service' string="Service" context="{'group_by':'service'}" />
+                        <filter name='group_site' string="Site" context="{'group_by':'site'}" />
+                        <filter name='group_room' string="Room" context="{'group_by':'room'}" />
+                        <filter name='group_company' string="Société" context="{'group_by':'company_id'}" />-->
+                    </group>
+                   
+                    <field name="product_id" />
+                     <!--<field name="num_compte"/>-->
+                    <!--<field name="category_id" />-->
+                    <field name="valeur_brute"/>
+                    <field name="is_taxable"/>
+                    <field name="base_taxable"/>
+                    <field name="propriete"/>         
+                    <field name="taux_cel_vel"/>  
+                    <field name="cel_vel" sum="Total CEL VEL"/>
+                    <field name="commune"/>  
+                </search>
+            </field>
+         </record>
+        
+
+        
+
+        <record model="ir.ui.view" id="optesis_autres_form">
+        <field name="name">optesis.Cel.Locative.form</field>
+        <field name="model">optesis.autres</field>
+        <field name="arch" type="xml">
+            <form >
+                <sheet string="Locations/Mis à Disposition">
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                           
+                            
+                            <field name="site"/>
+                             <field name="building"/>
+                              <field name="level"/>
+                            <field name="name"/>
+                                                          
+                            <field name="commune"/>
+                           
+                        </group>
+                        
+                        <group>
+                           
+                      
+                             <field name="date_debut"/>
+                            <field name="date_end"/>
+                               <field name="duree_in_months"/>
+                           
+                          
+                        </group>
+                          <group>
+                          
+                            
+                          
+                            <field name="valeur_mensuelle"/>
+                            <field name="valeur_anuelle"/>
+                            <field name="taux_cel_vel"/>  
+                            <field name="cel_vl"/>
+                            
+                      
+                        </group>
+                        
+                        
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    
+        
+           <record model="ir.ui.view"  id="list_Autres">
+            <field name="priority" eval="10"/>
+            <field name="name">CEL LOCATIVE</field>
+            <field name="model">optesis.autres</field>
+            <field name="arch" type="xml">
+      
+                <tree string="CEL LOCATIVE" >
+                   
+                    
+                 
+                     
+                        <field name="product_id"/>
+                             <field name="date_debut"/>
+                            <field name="date_end"/>
+                               <field name="duree_in_months"/>
+                           
+                    
+                          
+                            
+                          
+                            <field name="valeur_mensuelle"/>
+                            <field name="valeur_anuelle"/>
+                            <field name="taux_cel_vel"/>  
+                            <field name="cel_vl"/>
+                            
+                      
+            
+                        
+                
+                    
+
+                </tree>
+              
+                
+            </field>
+        </record>
+        
+        
+          <record id="asset_view_form_inherit" model="ir.ui.view">
+            <field name="name">optesis.asset.asset.form.inherit.optimo</field>
+            <field name="model">optesis.asset.asset</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="optimo.optesis_asset_form"/>
+            <field name="arch" type="xml">
+                <field name="inventory_date" position="after">
+                    <field name="tax_ok"  invisible="1"/>
+                    <field name="commune" attrs="{'invisible':[('tax_ok', '!=', 1)]}"/>
+                </field>
+                <field name="family_id" position="after">
+              
+                     <field name="num_compte" required="True" invisible="1"/>
+                                
+                                <field name="tax_ok"  invisible="1"/>
+                                <!--<field name="category_id" required="True"/>-->
+                                <field name="is_taxable" attrs="{'invisible':[('tax_ok', '!=', 1)]}"/>
+
+                </field>
+                 <field name="value" position="after">
+                     <field name="tax_ok"  invisible="1"/>
+                        <field name="base_taxable" attrs="{'invisible':[('tax_ok', '!=', 1)]}"/>
+                        <field name="cel_vel" attrs="{'invisible':[('tax_ok', '!=', 1)]}"/>
+                        <field name="taux_cel_vel"/>  
+
+                     
+
+                </field>
+                  <field name="room" position="before">
+                      <field name="tax_ok"  invisible="1"/>
+                    <field name="propriete" attrs="{'invisible':[('tax_ok', '!=', 1)]}" required="True"/>
+                       
+                </field>
+               
+                                
+
+            </field>
+              
+              
+              
+        </record>
+    
+
+     <record id="family_view_form_inherit" model="ir.ui.view">
+            <field name="name">optesis.family.form.inherit.optimo</field>
+            <field name="model">optesis.family</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="optimo.family_form"/>
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <field name="num_compte"  />
+                
+                </field>
+                </field>
+              
+        </record>
+    
+                 
+ 
+ 
+
+       <act_window id="win_inv_101" name="Cel locative" res_model="optesis.autres" view_mode="tree,form" />
+         <menuitem id="asset_menu_autre" name="Cel Locative" parent="optimo.asset_menu_1" action="win_inv_101" sequence="50"/>
+        <act_window id="win_inv_102" name="Etat" res_model="optesis.etat.cel" view_mode="tree,form" />
+
+        <!--<menuitem id="asset_menu_etat_cel" name="Etat Cel VL" parent="optimo.asset_menu_1" action="action_view_pivot" sequence="50"/>-->
+         <menuitem id="asset_menu_etat_cel" name="Etat Cel VL" parent="optimo.asset_menu_1" action="win_inv_102" sequence="52"/>
+
+    </data>
+</odoo>

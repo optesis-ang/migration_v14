@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+optesis_autres_manager,optesis.autres.manager manager,model_optesis_autres,optimo.group_manager,1,1,1,1
+optesis_etat_cel,optesis.etat.cel.manager manager,model_optesis_etat_cel,optimo.group_manager,1,1,1,1

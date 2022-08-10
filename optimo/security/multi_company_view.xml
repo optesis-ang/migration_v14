@@ -78,6 +78,20 @@
         <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
     </record>
 
+    <record id="optimo_product" model="ir.rule">
+        <field name="name">Optimo Product</field>
+        <field name="model_id" ref="optimo.model_optesis_product"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="optimo_family" model="ir.rule">
+        <field name="name">Optimo Family</field>
+        <field name="model_id" ref="optimo.model_optesis_family"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
     <record id="optimo_condition" model="ir.rule">
         <field name="name">Optimo Condition</field>
         <field name="model_id" ref="optimo.model_optesis_condition"/>
@@ -85,7 +99,7 @@
         <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
     </record>
 
-    <record id="optimo_log" model="ir.rule">
+    <record id="optimo_account_asset_log" model="ir.rule">
         <field name="name">Optimo Level</field>
         <field name="model_id" ref="optimo.model_optesis_account_asset_log"/>
         <field eval="True" name="global"/>
@@ -99,6 +113,12 @@
         <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
     </record>
 
+    <record id="optimo_asset_asset" model="ir.rule">
+        <field name="name">Optimo Asset</field>
+        <field name="model_id" ref="optimo.model_optesis_asset_asset"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
 
     <record id="optimo_asset_asset_transient" model="ir.rule">
         <field name="name">Optimo Asset Transient</field>

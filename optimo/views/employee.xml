@@ -8,6 +8,7 @@
             <tree string="agent_list">
                 <field name="name"/>
                 <field name="service" />
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -24,6 +25,7 @@
                         <separator string="Agent" colspan="2"/>
                         <field name="name"/>
                         <field name="service"/>
+                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                     </group>
                 </group>
 
@@ -38,4 +40,3 @@
 
     </data>
 </odoo>
-
